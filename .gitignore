@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+/src/main/resources/static/imagens/Downloads/Sistema Hosp  UC12/SistemaHospitalar/build/
+/src/main/resources/static/imagens/Downloads/Sistema Hosp  UC12/SistemaHospitalar/dist/
+/src/main/resources/static/imagens/Downloads/Sistema Hosp  UC12/SistemaHospitalar/nbproject/private/
+/src/main/resources/static/imagens/Downloads/Sistema Hosp  UC12 (1)/SistemaHospitalar/nbproject/private/

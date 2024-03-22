@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Catalogo de produtos</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="../imagens/favicon.ico">
+        <link rel="stylesheet" href="../css/index.css" />        
+    </head>
+
+    <body>
+        <header>
+
+
+            <div class="flex-container" id="primeiraLinha">  
+                <div id="divLogin">
+                    <a href="/menuRestrito">
+                    <img src="../imagens/login.png" alt="Area de Login"/>
+                    <span>Restrito</span>
+                    </a>
+                </div>
+
+                <div id="carrinhoCompras">
+                    <a th:href="@{/carrinho}">
+                        <span>Carrinho de Compras</span>
+                        <img th:src="@{/../imagens/icoCarrinho.png}" alt="Icone Carrinho de Compras"/>
+                        <span id="quantidadeCarrinho">0</span>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="cabecalho flex-container">                
+                <div class="cabecalho2 flex-container">
+                    <p>GRYSAL</p>
+                </div>
+                <img id="G" src="../imagens/G.png" alt="Simbolo Grysal"/>
+                <div class="cabecalho3 flex-container">
+                    <h1>Aqui o seu site vira realidade</h1>
+                </div>                
+            </div>
+
+
+        </header>
+
+        <main>
+
+            <div class="pCategoria">
+                <p>Categorias</p>
+            </div>
+
+            <div class="categoriaTodo flex-container">
+
+                <div class="listaCategorias">
+                    <a th:href="@{/todosProdutos}">
+                        <img src="/../imagens/caderno.jpeg" alt="alt"/>
+                        <label>Mostrar Todos Produtos</label>
+                    </a>
+                </div>
+
+                <div th:each="categ : ${listaTodasCategorias}" class="listaCategorias">
+                    <a th:href="@{'mostrarProdutosCategoria?id=' + ${categ.id}}">
+                        <img th:src="@{'/imagens/' + ${categ.foto}}" th:alt="${categ.nome}"/>
+                        <label th:text="${categ.nome}">text</label>
+                    </a>
+                </div>
+
+            </div>
+
+
+
+        </main>
+
+        <footer>
+
+            <div class="flex-container" id="visiteRedesSociais">
+                <p>Visite nossas Redes Sociais / Fale conosco</p>
+            </div>
+
+            <div id="redesSociais" class="flex-container">
+                <a href="#">
+                    <img th:src="@{/../imagens/icoFacebok.png}" alt="Icone do facebook"/>
+                </a>
+
+                <a href="#">
+                    <img id="icoInstag" th:src="@{/../imagens/icoInst.png}" alt="Icone do Instagram"/>
+                </a>
+
+                
+                <a href="whatsapp://send?phone=+5513981816525&text=Olá! Quero conversar sobre: "> 
+                    <img id="icoZap" th:src="@{/../imagens/icoZap.png}" alt="Icone do WhatsApp"/>
+                </a>   
+                
+                <!--
+                <a id="whatsappLink" onclick="whatsappLink()">
+                    <img id="icoZap" th:src="@{/../imagens/icoZap.png}" alt="Icone do WhatsApp"/>
+                </a>
+                -->
+
+            </div>
+
+           
+            <input type="hidden" id="userTokenId" th:value="${whats.usertokenid}">
+            <input type="hidden" id="instanceId" th:value="${whats.instanceid}">
+            <input type="hidden" id="instanceToken" th:value="${whats.instancetoken}">
+
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+        <script src="../js/carrinho.js"></script>
+
+        <script>
+                 /*
+                    const USER_TOKEN_ID = document.getElementById("userTokenId").value;
+                    const INSTANCE_ID = document.getElementById("instanceId").value;
+                    const INSTANCE_TOKEN = document.getElementById("instanceToken").value;
+
+
+                    async function handleSendNotification(message) {
+                        try {
+                            const GZAPPY_URL = 'https://api.gzappy.com/v1/message/send-message';
+                            const response = await fetch(GZAPPY_URL, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'user_token_id': USER_TOKEN_ID
+                                },
+                                body: JSON.stringify({
+                                    instance_id: INSTANCE_ID,
+                                    instance_token: INSTANCE_TOKEN,
+                                    message: [message],
+                                    phone: '5513981816525'
+                                })
+                            });
+                            const data = await response.json();
+                            console.log(data);
+                        } catch (error) {
+                            console.error(error);
+                            window.open("whatsapp://send?phone=+5513981816525&text=Olá! Bem vindo a Grysal, \nComo podemos te ajudar?");
+                        }
+                    }
+
+
+
+                    async function whatsappLink() {
+                        let mensagemWhatsApp = "Olá! Bem vindo a Grysal, \nComo podemos te ajudar?";
+                        try {
+                            await handleSendNotification(mensagemWhatsApp);
+                            console.log("Mensagem enviada com sucesso para a API.");
+                        } catch (error) {
+                            console.error("Erro ao enviar mensagem para a API:", error);
+                        }
+                    }
+*/
+
+
+        </script>
+    </body>
+
+</html>

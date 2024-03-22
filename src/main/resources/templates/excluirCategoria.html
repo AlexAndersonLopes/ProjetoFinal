@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Mostrar todas Categorias</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/index.css" /> 
+        <link rel="stylesheet" href="../css/restrito.css" /> 
+    </head>
+
+    <body>
+        <header>
+
+            <div class="cabecalho flex-container">                
+                <div class="cabecalho2 flex-container">
+                    <p>GRYSAL</p>
+                </div>
+                <img id="G" src="../imagens/G.png" alt="Simbolo Grysal"/>
+                <div class="cabecalho3 flex-container">
+                    <h1>Excluír Categoria</h1>
+                </div>                
+            </div>
+
+            <button onclick="goBack()" class="botaoVoltar">Voltar</button>
+
+        </header>
+
+        <main>
+
+            <div id="textoExcluir" data-id="${categoria.id}">
+                <p >Você tem certeza que desejar excluír a categoria: "<span th:text="${categoria.nome}"></span>"? <br>Essa ação não poderá ser desfeita, e todos os produtos cadastrados nessa categoria também serão apagados.</p>
+
+                <img th:src="@{'/imagens/' + ${categoria.foto}}" th:alt="${categoria.nome}"/>
+
+                <div class="excluirDivs">
+                    <p id="categoriaId" th:text="${categoria.id}" style="display: none;"></p>
+                    <button class="botaoExcluir1" type="button" onclick="excluirCategoria()">Excluir</button>
+
+
+                    <button class="botaoCancelar" onclick="goBack()">Cancelar</button>            
+                </div>
+
+            </div>
+
+
+        </main>
+
+        <footer>
+
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+        <script>
+                         function goBack() {
+                        if (window.history.length > 1) {
+                            window.history.back(); 
+                        } else {
+                            window.location.href = '/mostrarTodasCategorias'; 
+                        }
+                    }
+
+                        function excluirCategoria() {
+                            var categoriaId = document.getElementById("categoriaId").textContent;
+
+                            if (confirm("Você tem certeza que deseja excluir esta categoria? Essa ação não poderá ser desfeita.")) {
+                                fetch(`/excluirCategoriaId?id=${categoriaId}`, {
+                                    method: 'DELETE',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                })
+                                        .then(response => {
+                                            if (response.ok) {
+                                                window.location.href = '/mostrarTodasCategorias';
+                                            } else {
+                                                throw new Error('Erro ao excluir categoria');
+                                            }
+                                        })
+                                        .catch(error => {
+                                            console.error('Erro:', error);
+                                            alert('Erro ao excluir a categoria');
+                                        });
+                            }
+                        }
+        </script>
+
+    </body>
+
+</html>

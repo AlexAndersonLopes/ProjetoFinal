@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+    <head>
+        <title>Catalogo de produtos</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" type="text/css" href="../css/index.css" />      
+        <link rel="stylesheet" type="text/css" href="../css/detalhes.css" />        
+    </head>
+
+    <body>
+        <header>
+
+            <div class="flex-container" id="primeiraLinha">  
+                <div id="divLogin">
+                    <a href="/menuRestrito">
+                        <img src="../imagens/login.png" alt="Area de Login"/>
+                        <span>Restrito</span>
+                    </a>
+                </div>
+
+                <div id="carrinhoCompras">
+                    <a th:href="@{/carrinho}">
+                        <span>Carrinho de Compras</span>
+                        <img id="imagemCarrinho" th:src="@{/../imagens/icoCarrinho.png}" alt="Icone Carrinho de Compras"/>
+                        <span id="quantidadeCarrinho">0</span>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="cabecalho flex-container">                
+                <div class="cabecalho2 flex-container">
+                    <p>GRYSAL</p>
+                </div>
+                <img id="G" src="../imagens/G.png" alt="Simbolo Grysal"/>
+                <div class="cabecalho3 flex-container">
+                    <h1>Aqui o seu site vira realidade</h1>
+                </div>                
+            </div>
+
+            <button onclick="goBack()" class="botaoVoltar">Voltar</button>
+
+        </header>
+
+        <main>
+
+            <div id="divDetalhes" class="flex-container" data-id="${produto.id}">
+                <img id="detalhesFoto" th:src="@{'/../imagens/'+${produto.foto}}" th:alt="${produto.nome}"/>
+
+                <div id="pc">
+
+                    <h1 id="nomeMarca" th:text="${produto.nome + ' - ' + produto.marca}">title</h1>
+                    <p id="valor" th:text="${'R$ ' + produto.preco}">text</p>
+                    <p id="qtd" th:text="${'Quantidade disponivel: ' + produto.quantidade}">text</p>
+
+                    <div class="container">
+                        <span id="containerLabel">Quantidade: </span>
+                        <div class="input-group">
+
+                            <div class="input-group-prepend">                           
+                                <!-- Botão para diminuir a quantidade -->
+                                <button class="btn btn-outline-secondary" type="button" onclick="decrement()">-</button>
+                            </div>
+                            <!-- Campo de entrada para a quantidade -->
+                            <input id="quantidade" type="text" class="form-control text-center" value="1" aria-label="Quantidade" aria-describedby="basic-addon1">
+                            <div class="input-group-append">
+                                <!-- Botão para aumentar a quantidade -->
+                                <button class="btn btn-outline-secondary" type="button"  onclick="increment()">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+
+                        <p id="idProdutoss" style="display: none;" th:text="${produto.id}"></p>
+
+                        <button class="addCarrinho" onclick="adicionarNoCarrinho()" type="button">Adicionar no carrinho</button>
+
+                    </div>
+
+                </div>
+
+                
+            </div>
+
+        </main>
+
+        <footer>
+            
+            <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Descrição
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <p id="desc" th:text="${produto.descricao}">text</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+        <script src="../js/carrinho.js"></script>
+        <script>
+                        // Função para voltar para a página anterior
+                        function goBack() {
+                            window.history.back();
+                            atualizarQuantidadeCarrinho();
+                        }
+
+
+                        function increment() {
+                            var quantidadeInput = document.getElementById('quantidade');
+                            var quantidade = parseInt(quantidadeInput.value);
+                            var quantidadeDisponivel = parseInt(document.getElementById('qtd').innerText.split(' ')[2]);
+                            if (quantidade < quantidadeDisponivel) {
+                                quantidadeInput.value = quantidade + 1;
+                            }
+                        }
+
+                        function decrement() {
+                            var quantidadeInput = document.getElementById('quantidade');
+                            var quantidade = parseInt(quantidadeInput.value);
+                            if (quantidade > 1) {
+                                quantidadeInput.value = quantidade - 1;
+                            }
+                        }
+
+
+                        function adicionarNoCarrinho() {
+                            let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+                            var id = document.getElementById('idProdutoss').textContent;
+                            var nome = document.getElementById('nomeMarca').textContent.split(' - ')[0];
+                            var marca = document.getElementById('nomeMarca').textContent.split(' - ')[1];
+                            var preco = parseFloat(document.getElementById('valor').textContent.replace('R$ ', ''));
+                            var quantidadeSelecionada = parseInt(document.getElementById('quantidade').value);
+                            var foto = document.getElementById('detalhesFoto').getAttribute('src').split('/')[3]; // Extrai o nome do arquivo da URL da imagem
+
+                            console.log("Dados do produto:");
+                            console.log("ID:", id);
+                            console.log("Nome:", nome);
+                            console.log("Marca:", marca);
+                            console.log("Preço:", preco);
+                            console.log("Quantidade selecionada:", quantidadeSelecionada);
+                            console.log("Foto:", foto);
+                            // Verificar se o produto já está no carrinho
+                            let produtoExistente = carrinho.find(item => item.id === id);
+                            if (produtoExistente) {
+                                // Se o produto já estiver no carrinho, aumentar a quantidade
+                                produtoExistente.quantidade += parseInt(quantidadeSelecionada);
+                            } else {
+                                // Se o produto não estiver no carrinho, adicioná-lo
+                                carrinho.push({
+                                    id: id,
+                                    nome: nome,
+                                    marca: marca,
+                                    preco: preco,
+                                    quantidade: parseInt(quantidadeSelecionada),
+                                    foto: foto
+                                });
+                            }
+
+                            localStorage.setItem('carrinho', JSON.stringify(carrinho));
+                            atualizarQuantidadeCarrinho();
+                            const imagemCarrinho = document.getElementById('imagemCarrinho');
+                            imagemCarrinho.classList.toggle('animar');
+                            document.querySelector('.addCarrinho').textContent = 'Adicionado';
+                            // Define um temporizador para voltar ao texto original após 5 segundos
+                            setTimeout(function () {
+                                // Volta ao texto original do botão após 5 segundos
+                                document.querySelector('.addCarrinho').textContent = 'Adicionar no carrinho';
+                            }, 5000); // 5000 milissegundos = 5 segundos
+                        }
+        </script>
+    </body>
+
+</html>

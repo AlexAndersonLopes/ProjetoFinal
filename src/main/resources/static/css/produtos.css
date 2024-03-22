@@ -1,0 +1,186 @@
+
+body{
+    margin-bottom: 15%;
+}
+
+
+.botaoVoltar{
+    margin-top: 5%;
+    padding: 1% 6%;
+    border: 1px solid black;
+    border-radius: 25px;
+    color: blue;
+    font-size: 100%;
+    font-weight: 700;
+    background-color: buttonface;
+    margin-left: 5%;
+}
+
+#container{
+    margin-top: 10%;
+}
+#form-control{
+    border: 2px solid black;
+    font-family: Arial;
+    width: 70%;
+    margin: auto;
+}
+
+.espaco{
+    margin-top: 10%;
+}
+
+.divProdutos{
+    display: flex;
+    border: 2px solid black;
+    border-radius: 8px;
+    width: 90%;
+    margin: auto;
+    margin-top: 2%;
+    height: 120px;
+    align-items: center;
+    overflow: hidden;
+}
+
+.divProdutos img{
+    height: 90px;
+    width: 90px;
+}
+
+.conteudo {
+    flex: 2;
+    margin-top: 3%;
+}
+
+.valor{
+    flex: 1;
+}
+
+.conteudo p{
+    font-family: Arial;
+    font-size: 80%;
+    font-weight: 600;
+    color: black;
+    margin-top: 2%;
+    margin-left: 3%;
+    margin-right: 3%;
+    text-align: center;
+}
+
+.valor p{
+    font-family: Arial;
+    color: red;
+    font-weight: 700;
+    font-size: 125%;
+}
+
+#zap{
+    position: fixed;
+    right: 10%;
+    bottom: 20px;
+    z-index: 999;
+}
+
+.compontenteA{
+    text-decoration: none;
+}
+
+
+
+@media only screen and (min-width: 751px) {
+
+    body{
+        background-color: whitesmoke;
+        margin-bottom: 15%;
+    }
+
+
+    .botaoVoltar{
+        margin-top: 2%;
+        padding: 1% 6%;
+        border: 1px solid black;
+        border-radius: 25px;
+        color: blue;
+        font-size: 100%;
+        font-weight: 700;
+        background-color: buttonface;
+        margin-left: 5%;
+    }
+
+    #container{
+        margin-top: 4%;
+    }
+    #form-control{
+        border: 2px solid black;
+        font-family: Arial;
+        width: 40%;
+        margin: auto;
+    }
+
+    .espaco{
+        margin-top: 5%;
+    }
+
+    .divProdutos{
+        display: flex;
+        border: 2px solid black;
+        border-radius: 8px;
+        width: 60%;
+        margin: auto;
+        margin-top: 1%;
+        height: 120px;
+        align-items: center;
+        overflow: hidden;
+        background-color: white;
+        cursor: pointer;
+    }
+
+    .divProdutos img{
+        height: 90px;
+        width: 90px;
+        margin-left: 5%;
+    }
+
+    .conteudo {
+        flex: 2;
+    }
+
+    .valor{
+        flex: 1;
+    }
+
+    .conteudo p{
+        font-family: Arial;
+        font-size: 80%;
+        font-weight: 600;
+        color: black;
+        margin-left: 5%;
+        margin-top: 2%;
+        margin-left: 3%;
+        margin-right: 3%;
+        text-align: center;
+    }
+
+    .valor p{
+        font-family: Arial;
+        color: red;
+        font-weight: 700;
+        font-size: 125%;
+        text-align: center;
+    }
+
+    #zap{
+        position: fixed;
+        right: 10%;
+        bottom: 20px;
+        z-index: 999;
+    }
+
+    .compontenteA{
+        text-decoration: none;
+    }
+
+
+
+}
+

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Cadastro de Categoria</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/index.css" /> 
+        <link rel="stylesheet" href="../css/restrito.css" /> 
+    </head>
+
+    <body>
+        <header>
+
+            <div class="cabecalho flex-container">                
+                <div class="cabecalho2 flex-container">
+                    <p>GRYSAL</p>
+                </div>
+                <img id="G" src="../imagens/G.png" alt="Simbolo Grysal"/>
+                <div class="cabecalho3 flex-container">
+                    <h1>Cadastrar Categoria</h1>
+                </div>                
+            </div>
+
+            <button onclick="goBack()" class="botaoVoltar">Voltar</button>
+
+        </header>
+
+        <main>
+
+            <form class="cadastrarCategoriaForm" method="post" th:action="@{/salvarCategoria}" th:object="${categoria}" enctype="multipart/form-data" onsubmit="return validarFormulario()">
+
+                <label>Nova categoria:</label><input id="nomeCategoria"  type="text" th:field="${categoria.nome}" /><br><br>
+
+                <label>Foto:</label> <input id="fotoInput0" type="file" name="fotos"><br><br>
+
+                <button id="botaoCategoria" class="botaoCadastrar" type="submit">Cadastrar</button>
+
+            </form>
+
+        </main>
+
+        <footer>
+
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+        <script>
+                function goBack() {
+                    window.location.href = '/menuRestrito';
+                }
+
+                function validarFormulario() {
+                    var nomeCategoria = document.getElementById("nomeCategoria").value;
+                    var fotoInput = document.getElementById("fotoInput0").value;
+
+                    if (nomeCategoria.trim() === "" || fotoInput.trim() === "") {
+                        alert("Por favor, preencha todos os campos.");
+                        return false;
+                    }
+
+                    return true;
+                }
+        </script>
+
+    </body>
+
+</html>

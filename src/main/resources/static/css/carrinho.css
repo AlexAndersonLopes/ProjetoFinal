@@ -1,0 +1,435 @@
+
+body{
+    margin-bottom: 15%;
+}
+
+.cabecalho{
+    display: flex;
+    background-color: mediumorchid;
+    width: 100%;
+    min-height: 100px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border: 3px solid darkmagenta;
+    background-image: linear-gradient(to right, darkmagenta 20%, mediumorchid 40%),
+        linear-gradient(to left, darkmagenta 20%, mediumorchid 40%);
+    background-size: 50% 100%, 100% 100%; /* 50% da largura para cada gradiente */
+    background-repeat: no-repeat; /* Evita a repetição do gradiente */
+}
+
+#G{
+    width: 30%;
+    margin-left: auto;
+    margin-right: 15%;
+    margin-top: -5%;
+}
+
+
+
+.cabecalho2{
+    display: flex;
+    width: 50%;
+    height: 7%;
+    margin-top: 5%;
+    background: linear-gradient(to right, black 70%, mediumorchid 99%); /* gradiente linear de preto para mediumorchid da esquerda para a direita */
+    box-shadow: -15px 15px 20px rgba(0, 0, 0, 0.6); /* Adiciona uma sombra */
+}
+
+.cabecalho2 p{
+    font-size: 125%;
+    font-weight: 700;
+    font-family: Comic Sans, cursive;
+    color: white;
+    margin: auto;
+    text-shadow: 2px 4px 6px rgba(255, 255, 255, 0.6); /*sombra no texto*/
+}
+
+.cabecalho3 {
+    display: flex;
+    width: 100%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    margin-top: -2%;
+    margin-bottom: 5%;
+    justify-content: flex-end;
+    margin-left: auto;
+    background: linear-gradient(to left, white 60%, darkmagenta 99%); /* gradiente linear de preto para mediumorchid da esquerda para a direita */
+    box-shadow: 15px 5px 8px rgba(0, 0, 0, 0.6); /* Adiciona uma sombra */
+}
+
+.cabecalho3 h1 {
+    font-size: 100%;
+    font-weight: 500;
+    font-family: Arial;
+    margin: auto;
+    justify-content: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /*sombra no texto*/
+}
+
+#botoes{
+    display: flex;
+    justify-content: space-around;
+    margin-left: 5%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.divCarrinho{
+    display: flex;
+    border: 2px solid black;
+    border-radius: 8px;
+    width: 90%;
+    height: auto;
+    margin-bottom: 50px;
+    margin: auto;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: white;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+.botaoLimpar{
+    padding: 2% 8%;
+    border: 1px solid red;
+    border-radius: 25px;
+    color: red;
+    font-size: 100%;
+    font-weight: 700;
+    background-color: white;
+    box-shadow: 4px 4px 6px rgba(255, 0, 0, 0.4); /* Adiciona uma sombra */
+    text-shadow: 2px 4px 4px rgba(255, 0, 0, 0.2); /*sombra no texto*/
+}
+
+.botaoVoltar{
+    padding: 2% 8%;
+    border: 1px solid black;
+    border-radius: 25px;
+    color: blue;
+    font-size: 100%;
+    font-weight: 700;
+    background-color: white;
+    box-shadow: 4px 4px 6px rgba(0, 0, 255, 0.4); /* Adiciona uma sombra */
+    text-shadow: 2px 4px 4px rgba(0, 0, 255, 0.2); /*sombra no texto*/
+}
+
+.divImg img{
+    height: 90px;
+    width: 90px;
+}
+
+.divNome p{
+    font-family: Arial;
+    font-size: 80%;
+    font-weight: 600;
+    color: black;
+    text-align: center;
+}
+
+.divNome{
+    flex: 2;
+}
+
+.divPreco{
+    flex: 1;
+}
+
+.divQuantidade {
+    flex: 1;
+}
+
+.divPreco p{
+    font-family: Arial;
+    color: red;
+    font-weight: 700;
+    font-size: 125%;
+    text-align: center;
+}
+
+.divQuantidade p{
+    font-family: Arial;
+    color: blue;
+    font-weight: 700;
+    font-size: 110%;
+    text-align: center;
+}
+
+
+.btnExcluir {
+    font-family: Arial;
+    width: 100%;
+    margin-top: 16px;
+    font-size: 100%;
+    font-weight: 600;
+    height: 40px;
+    background-color: salmon;
+    box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.3); /* Adiciona uma sombra */
+    background: radial-gradient(circle, salmon 50%, red 90%);
+}
+
+#mostrarTotal{
+    font-size: 140%;
+    font-weight: 600;
+    text-align: center;
+    margin: auto;
+    margin-top: 10%;
+    width: 70%;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 2% 10%;
+    background-color: white;
+}
+
+#botaoFinalizarCompra{
+    display: block;
+    padding: 3% 10%;
+    border: 2px solid black;
+    border-radius: 15px;
+    color: black;
+    font-size: 120%;
+    font-weight: 700;
+    background-color: aquamarine;
+    margin: auto;
+    text-align: center;
+    justify-content: center;
+    margin-top: 10%;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.4);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /*sombra no texto*/
+}
+
+
+
+@media only screen and (min-width: 751px) {
+
+    body{
+        background-color: whitesmoke;
+        margin-bottom: 15%;
+    }
+
+    .cabecalho{
+        display: flex;
+        background-color: mediumorchid;
+        width: 100%;
+        min-height: 100px;
+        max-height: 170px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        border: 3px solid darkmagenta;
+        background-image: linear-gradient(to right, darkmagenta 20%, mediumorchid 40%),
+            linear-gradient(to left, darkmagenta 20%, mediumorchid 40%);
+        background-size: 50% 100%, 100% 100%; /* 50% da largura para cada gradiente */
+        background-repeat: no-repeat; /* Evita a repetição do gradiente */
+    }
+
+    #G{
+        width: 10%;
+        height: 10%;
+        margin-left: auto;
+        margin-right: 15%;
+        margin-top: -2%;
+    }
+
+    .cabecalho2{
+        display: flex;
+        width: 40%;
+        height: 7%;
+        margin-top: 1%;
+        background: linear-gradient(to right, black 70%, mediumorchid 95%); /* gradiente linear de preto para mediumorchid da esquerda para a direita */
+        box-shadow: -15px 25px 20px rgba(0, 0, 0, 0.6); /* Adiciona uma sombra */
+    }
+
+    .cabecalho2 p{
+        font-size: 140%;
+        font-weight: 700;
+        font-family: Comic Sans, cursive;
+        color: white;
+        margin: auto;
+        text-shadow: 2px 4px 6px rgba(255, 255, 255, 0.6); /*sombra no texto*/
+    }
+
+    .cabecalho3 {
+        display: flex;
+        width: 60%;
+        padding-top: 0.5%;
+        padding-bottom: 0.5%;
+        margin-top: -2%;
+        margin-bottom: 1%;
+        border-radius: 25px 0px 0px 25px;
+        justify-content: flex-end;
+        margin-left: auto;
+        box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.4); /* Adiciona uma sombra */
+        background: linear-gradient(to left, white 60%, mediumorchid 90%); /* gradiente linear de preto para mediumorchid da esquerda para a direita */
+        box-shadow: 15px 5px 8px rgba(0, 0, 0, 0.6); /* Adiciona uma sombra */
+    }
+
+    .cabecalho3 h1 {
+        font-size: 90%;
+        font-weight: 500;
+        font-family: Arial;
+        margin: auto;
+        justify-content: center;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /*sombra no texto*/
+    }
+
+    #botoes{
+        display: flex;
+        justify-content: space-around;
+        margin: auto;
+        margin-top: 5%;
+        margin-bottom: 4%;
+        width: 60%;
+    }
+
+    .botaoLimpar{
+        padding: 1% 6%;
+        border: 1px solid red;
+        border-radius: 25px;
+        color: red;
+        font-size: 100%;
+        font-weight: 700;
+        background-color: white;
+        box-shadow: 4px 4px 6px rgba(255, 0, 0, 0.4); /* Adiciona uma sombra */
+        text-shadow: 2px 4px 4px rgba(255, 0, 0, 0.2); /*sombra no texto*/
+        transition: transform 1s;
+        cursor: pointer;
+    }
+
+    .botaoLimpar:hover{
+        transform: scale(1.1);
+    }
+
+
+    .divCarrinho{
+        display: flex;
+        border: 2px solid black;
+        border-radius: 8px;
+        width: 50%;
+        margin: auto;
+        margin-bottom: 50px;
+        height: auto;
+        height: auto;
+        align-items: center;
+        flex-wrap: wrap;
+        background-color: white;
+        box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.4); /* Adiciona uma sombra */
+    }
+
+
+    .botaoVoltar{
+        padding: 1% 6%;
+        border: 1px solid blue;
+        border-radius: 25px;
+        color: blue;
+        font-size: 100%;
+        font-weight: 700;
+        background-color: white;
+        box-shadow: 4px 4px 6px rgba(0, 0, 255, 0.4); /* Adiciona uma sombra */
+        text-shadow: 2px 4px 4px rgba(0, 0, 255, 0.2); /*sombra no texto*/
+        transition: transform 1s;
+        cursor: pointer;
+    }
+
+    .botaoVoltar:hover{
+        transform: scale(1.1);
+    }
+
+
+
+
+    .divImg img{
+        height: 90px;
+        width: 90px;
+        /*margin-left: 5%;
+        margin-top: 5%;*/
+    }
+
+    .divNome p{
+        font-family: Arial;
+        font-size: 80%;
+        font-weight: 600;
+        color: black;
+        text-align: center;
+    }
+
+    .divNome{
+        flex: 2;
+    }
+
+    .divPreco{
+        flex: 1;
+    }
+
+    .divQuantidade {
+        flex: 1;
+    }
+
+    .divPreco p{
+        font-family: Arial;
+        color: red;
+        font-weight: 700;
+        font-size: 125%;
+        text-align: center;
+    }
+
+    .divQuantidade p{
+        font-family: Arial;
+        color: blue;
+        font-weight: 700;
+        font-size: 110%;
+        text-align: center;
+    }
+
+
+    .btnExcluir {
+        font-family: Arial;
+        width: 100%;
+        border-radius: 0px 0px 0px 0px;
+        margin-top: 5px;
+        font-size: 100%;
+        font-weight: 600;
+        height: 40px;
+        background-color: rgb(255, 153, 153);
+        cursor: pointer;
+        box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra */
+        background: radial-gradient(circle, salmon 50%, red 90%);
+        transition: transform 1s;
+    }
+
+    .btnExcluir:hover {
+        transform: scale(1.1);
+    }
+
+    #mostrarTotal{
+        font-size: 140%;
+        font-weight: 600;
+        text-align: center;
+        margin: auto;
+        width: 60%;
+        border: 2px solid black;
+        border-radius: 10px;
+        padding: 1% 10%;
+        background-color: white;
+    }
+
+    #botaoFinalizarCompra{
+        display: block;
+        padding: 1% 6%;
+        border: 2px solid black;
+        border-radius: 10px;
+        color: black;
+        font-size: 100%;
+        font-weight: 700;
+        background-color: aquamarine;
+        margin: auto;
+        text-align: center;
+        justify-content: center;
+        margin-top: 5%;
+        cursor: pointer;
+        box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.4); /* Adiciona uma sombra */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /*sombra no texto*/
+        transition: transform 1s;
+    }
+
+    #botaoFinalizarCompra:hover{
+        transform: scale(1.1);
+    }
+}

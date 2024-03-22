@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+    <head>
+        <title>Catalogo de produtos</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="../css/index.css" />   
+        <link rel="stylesheet" href="../css/produtos.css" />        
+    </head>
+
+    <body>
+        <header>
+
+            <div class="flex-container" id="primeiraLinha">  
+                <div id="divLogin">
+                    <a href="/menuRestrito">
+                        <img src="../imagens/login.png" alt="Area de Login"/>
+                        <span>Restrito</span>
+                    </a>
+                </div>
+
+                <div id="carrinhoCompras">
+                    <a th:href="@{/carrinho}">
+                        <span>Carrinho de Compras</span>
+                        <img th:src="@{/../imagens/icoCarrinho.png}" alt="Icone Carrinho de Compras"/>
+                        <span id="quantidadeCarrinho">0</span>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="cabecalho flex-container">                
+                <div class="cabecalho2 flex-container">
+                    <p>GRYSAL</p>
+                </div>
+                <img id="G" src="../imagens/G.png" alt="Simbolo Grysal"/>
+                <div class="cabecalho3 flex-container">
+                    <h1>Aqui o seu site vira realidade</h1>
+                </div>                
+            </div>
+
+
+            <button onclick="goBack()" class="botaoVoltar">Voltar</button>
+
+        </header>
+
+        <main>
+
+            <div id="container" class="container">
+                <select id="form-control" class="form-control" onchange="redirectToPage()">
+
+                    <th:block th:each="categ : ${listaTodasCategorias}">
+                        <option th:value="${categ.id}" th:text="${categ.nome}">Opção</option>
+                    </th:block>
+                </select>
+            </div>
+
+            <div class="espaco"></div>
+
+            <div th:each="p : ${produtos}" class="divProdutos flex-container">
+
+                <a class="compontenteA" th:href="@{'detalhes?id=' + ${p.id}}"> 
+                    <img th:src="@{'/../imagens/'+${p.foto}}" th:alt="${p.nome}"/>
+                </a>
+
+                <div class="conteudo">
+                    <a class="compontenteA" th:href="@{'detalhes?id=' + ${p.id}}"> 
+                        <p th:text="${p.nome + ' - ' + p.marca}">text</p>
+                    </a>
+                </div>
+
+                <div class="valor">
+                    <a class="compontenteA" th:href="@{'detalhes?id=' + ${p.id}}"> 
+                        <p style="text-align: center;" class="precoProduto" th:text="@{' R$ &#10;' + ${p.preco}}">valor</p>
+                    </a>
+                </div>
+
+
+
+            </div>
+
+
+        </main>
+
+        <footer>
+
+            <div id="zap">
+                <a href="#">
+                    <img th:src="@{/../imagens/icoZap.png}" alt="Icone do WhatsApp"/>
+                </a>  
+            </div>
+
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+        <script src="../js/carrinho.js"></script>
+        <script>
+                    function goBack() {
+                        window.location.href = '/inicio';
+                    }
+
+
+                    document.addEventListener("DOMContentLoaded", function () {
+                        var selectElement = document.getElementById("form-control");
+                        var todosProdutosOption = document.createElement("option");
+                        todosProdutosOption.value = "todosProdutos";
+                        todosProdutosOption.text = "Todos Produtos";
+                        selectElement.insertBefore(todosProdutosOption, selectElement.firstChild);
+
+                        // Extrair o ID da categoria da URL
+                        var urlParams = new URLSearchParams(window.location.search);
+                        var idCategoriaSelecionada = urlParams.get('id');
+
+                        // Selecionar a opção correspondente
+                        var optionElements = selectElement.getElementsByTagName("option");
+                        for (var i = 0; i < optionElements.length; i++) {
+                            if (optionElements[i].value === idCategoriaSelecionada) {
+                                optionElements[i].selected = true;
+                                break;
+                            } else {
+                                optionElements[0].selected = true;
+                            }
+                        }
+                    });
+
+                    function redirectToPage() {
+                        var selectElement = document.getElementById("form-control");
+                        var selectedOptionValue = selectElement.value;
+
+                        if (selectedOptionValue === "todosProdutos") {
+                            window.location.href = "/todosProdutos";
+                        } else {
+                            window.location.href = "/mostrarProdutosCategoria?id=" + selectedOptionValue;
+                        }
+                    }
+
+                    document.addEventListener("DOMContentLoaded", function () {
+                        var precoElements = document.getElementsByClassName("precoProduto");
+                        for (var i = 0; i < precoElements.length; i++) {
+                            var precoText = precoElements[i].innerText;
+                            var precoNumber = parseFloat(precoText.replace("R$ ", ""));
+                            precoElements[i].innerText = "R$ " + precoNumber.toFixed(2);
+                        }
+                    });
+        </script>
+
+    </body>
+
+</html>

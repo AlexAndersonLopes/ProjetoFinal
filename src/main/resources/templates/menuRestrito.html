@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Catalogo de produtos</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="../imagens/favicon.ico">
+        <link rel="stylesheet" href="../css/index.css" />     
+        <link rel="stylesheet" href="../css/restrito.css" />  
+    </head>
+
+    <body>
+        <header>
+
+            <div class="cabecalho flex-container">                
+                <div class="cabecalho2 flex-container">
+                    <p>GRYSAL</p>
+                </div>
+                <img id="G" src="../imagens/G.png" alt="Simbolo Grysal"/>
+                <div class="cabecalho3 flex-container">
+                    <h1>Área restrita</h1>
+                </div>                
+            </div>
+
+            <button onclick="goBack()" class="botaoVoltar">Voltar</button>
+
+        </header>
+
+        <main>
+
+            <h1 class="categoria">CATEGORIA</h1>
+
+            <div class="cartazTodo">
+
+                <div class="cartazTema">
+                    <a th:href="@{/cadastroCategoria}">
+                        <img class="cartaz1" src="imagens\adicionar.png" alt="Adicionar Categoria">
+                        <div class="cartazNome">
+                            <p>Cadastrar Categoria</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="cartazTema">
+                    <a th:href="@{/mostrarTodasCategorias}">
+                        <img class="cartaz1" src="imagens\listas.png" alt="Mostrar Categorias">
+                        <div class="cartazNome">
+                            <p>Mostrar Categorias</p>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+
+            <h1 class="categoria">PRODUTO</h1>
+
+            <div class="cartazTodo">
+
+                <div class="cartazTema">
+                    <a th:href="@{/cadastrarProduto}">
+                        <img class="cartaz1" src="imagens\adicionar.png" alt="Adicionar Produto">
+                        <div class="cartazNome">
+                            <p>Cadastrar Produto</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="cartazTema">
+                    <a th:href="@{/mostrarProdutosRestrito}">
+                        <img class="cartaz1" src="imagens\listas.png" alt="Indicador de Palco">
+                        <div class="cartazNome">
+                            <p>Mostrar Produtos</p>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+
+            <h1 class="categoria">CONFIGURAÇÕES</h1>
+
+            <div class="cartazTodo">
+
+                <div class="cartazTema">
+                    <a th:href="@{conectarWhatsApp}">
+                        <img class="cartaz1" src="imagens\icoZap.png" alt="Configurações">
+                        <div class="cartazNome">
+                            <p>Conectar WhatsApp</p>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+
+
+
+        </main>
+
+        <footer>
+
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+        
+        <script>
+                function goBack() {
+                        window.location.href = '/inicio'; 
+                    }
+        </script>
+
+    </body>
+
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+    <head>
+        <title>Catalogo de produtos</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="../css/carrinho.css" />        
+    </head>
+
+    <body>
+        <header>
+            <div class="cabecalho flex-container">                
+                <div class="cabecalho2 flex-container">
+                    <p>GRYSAL</p>
+                </div>
+                <img id="G" src="../imagens/G.png" alt="Simbolo Grysal"/>
+                <div class="cabecalho3 flex-container">
+                    <h1>Aqui o seu site vira realidade</h1>
+                </div>                
+            </div>
+
+            <div id="botoes">
+                <button class="botaoVoltar" >
+                    <a th:href="@{/inicio}">Voltar</a>
+                </button>
+                <button class="botaoLimpar" onclick="limparCarrinho()">Limpar Carrinho</button>
+            </div>
+        </header>
+
+        <main>
+
+
+            <div id="divCarrinho">
+
+                <div class="divImg">
+                    <img class="imageProduto" src="#" alt="alt"/>
+                </div>
+
+                <div class="divNome">
+                    <p class="nomeProduto">text</p>
+                </div>
+
+                <div class="divPreco">
+                    <p class="precoProduto">text</p>
+                </div>
+
+                <div class="divQuantidade">
+                    <p class="quantidadeProduto">text</p>
+                </div>
+
+                <button class="btnExcluir row" onclick="excluirProduto(this)">Excluir</button>
+            </div>
+
+            <p id="mostrarTotal">Total R$ 0,00</p>
+
+
+        </main>
+
+        <footer>
+
+            <button id="botaoFinalizarCompra" class="flex-container" onclick="finalizarCompra()">Finalizar Compra</button>
+
+
+            <input type="hidden" id="userTokenId" th:value="${whats.usertokenid}">
+            <input type="hidden" id="instanceId" th:value="${whats.instanceid}">
+            <input type="hidden" id="instanceToken" th:value="${whats.instancetoken}">
+
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+        <script>
+                var total = 0;
+
+                // Função para mostrar os produtos do carrinho na página HTML
+                function mostrarCarrinho() {
+                    let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+                    // Seleciona o elemento onde os produtos do carrinho serão exibidos
+                    let divCarrinho = document.getElementById('divCarrinho');
+
+                    // Limpa o conteúdo atual dentro da divCarrinho
+                    divCarrinho.innerHTML = '';
+                    total = 0;
+
+                    // Itera sobre cada produto no carrinho
+                    carrinho.forEach((produto, index) => { // Adiciona índice ao loop
+                        // Cria um elemento div para cada produto
+                        let divProduto = document.createElement('div');
+                        divProduto.classList.add('divCarrinho');
+
+                        // Cria e adiciona uma imagem para o produto
+                        let divImg = document.createElement('div');
+                        divImg.classList.add('divImg');
+                        let img = document.createElement('img');
+                        img.classList.add('imageProduto');
+                        img.src = "/../imagens/" + produto.foto;
+                        divImg.appendChild(img);
+                        divProduto.appendChild(divImg);
+
+                        // Cria e adiciona o nome do produto
+                        let divNome = document.createElement('div');
+                        divNome.classList.add('divNome');
+                        let nomeProduto = document.createElement('p');
+                        nomeProduto.classList.add('nomeProduto');
+                        nomeProduto.textContent = produto.nome;
+                        divNome.appendChild(nomeProduto);
+                        divProduto.appendChild(divNome);
+
+                        // Cria e adiciona a quantidade do produto
+                        let divQuantidade = document.createElement('div');
+                        divQuantidade.classList.add('divQuantidade');
+                        let quantidadeProduto = document.createElement('p');
+                        quantidadeProduto.classList.add('quantidadeProduto');
+                        quantidadeProduto.innerHTML = "qtd<br>" + produto.quantidade + "x   ";
+                        divQuantidade.appendChild(quantidadeProduto);
+                        divProduto.appendChild(divQuantidade);
+
+                        // Cria e adiciona o preço do produto
+                        let divPreco = document.createElement('div');
+                        divPreco.classList.add('divPreco');
+                        let precoProduto = document.createElement('p');
+                        precoProduto.classList.add('precoProduto');
+                        let precoTotal = (produto.preco * produto.quantidade).toFixed(2);
+                        precoProduto.innerHTML = " R$<br>" + precoTotal;
+                        divPreco.appendChild(precoProduto);
+                        divProduto.appendChild(divPreco);
+                        total += produto.preco * produto.quantidade;
+
+                        // Cria um botão de exclusão para cada produto
+                        let btnExcluir = document.createElement('button');
+                        btnExcluir.textContent = 'Excluir';
+                        btnExcluir.classList.add('btnExcluir'); // Adiciona a classe ao botão de exclusão
+                        btnExcluir.addEventListener('click', function () {
+                            // Obtém o índice do produto a partir do atributo de dados 'data-index' do botão de exclusão
+                            let index = parseInt(btnExcluir.getAttribute('data-index'));
+                            // Remove o produto do carrinho quando o botão de exclusão é clicado
+                            carrinho.splice(index, 1);
+                            // Atualiza a exibição do carrinho na página
+                            // Subtrai o valor do produto removido do total
+                            total -= produto.preco * produto.quantidade;
+                            mostrarCarrinho();
+                            // Atualiza o carrinho no localStorage
+                            localStorage.setItem('carrinho', JSON.stringify(carrinho));
+                            // Recarrega a página para refletir as mudanças
+                            location.reload();
+                        });
+                        // Define o atributo de dados 'data-index' com o valor do índice atual para o botão de exclusão
+                        btnExcluir.setAttribute('data-index', index);
+                        divProduto.appendChild(btnExcluir);
+
+                        // Adiciona o divProduto à divCarrinho
+                        divCarrinho.appendChild(divProduto);
+                        document.getElementById('mostrarTotal').textContent = 'Total: R$ ' + total.toFixed(2);
+                    });
+                }
+
+
+                // função para exibir os produtos do carrinho
+                window.addEventListener('DOMContentLoaded', function () {
+                    mostrarCarrinho();
+                });
+
+                function limparCarrinho() {
+                    localStorage.removeItem('carrinho');
+                    total = 0;
+                    location.reload();
+                }
+
+
+
+
+                const USER_TOKEN_ID = document.getElementById("userTokenId").value;
+                const INSTANCE_ID = document.getElementById("instanceId").value;
+                const INSTANCE_TOKEN = document.getElementById("instanceToken").value;
+
+                async function handleSendNotification(message) {
+                    try {
+                        const GZAPPY_URL = 'https://api.gzappy.com/v1/message/send-message';
+
+                        const response = await fetch(GZAPPY_URL, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'user_token_id': USER_TOKEN_ID
+                            },
+                            body: JSON.stringify({
+                                instance_id: INSTANCE_ID,
+                                instance_token: INSTANCE_TOKEN,
+                                message: [message],
+                                phone: '551396322275'
+                            })
+                        });
+
+                        const data = await response.json();
+                        window.open(`https://api.whatsapp.com/send?phone=+5513981816525&text=${encodeURIComponent(message)}`);
+                        console.log(data);
+                    } catch (error) {
+                        console.error(error);
+                        window.open(`https://api.whatsapp.com/send?phone=+5513981816525&text=${encodeURIComponent(message)}`);
+                    }
+                    retirarEstoque();
+                }
+
+                async function finalizarCompra() {
+                    let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+                    if (carrinho.length === 0) {
+                        alert('Não há produtos no carrinho para finalizar a compra.');
+                        return; // Sai da função se o carrinho estiver vazio
+                    }
+
+                    let mensagemWhatsApp = "Olá! Esse é o meu pedido:\n\n";
+
+                    carrinho.forEach((produto, index) => {
+                        mensagemWhatsApp += "Produto: " + produto.nome + "\n";
+                        mensagemWhatsApp += "Quantidade: " + produto.quantidade + "\n";
+                        mensagemWhatsApp += "Preço: R$ " + (produto.preco * produto.quantidade).toFixed(2) + "\n\n";
+                    });
+
+                    // Calcula o preço total de todos os produtos no carrinho
+                    let precoTotal = carrinho.reduce((total, produto) => {
+                        return total + (produto.preco * produto.quantidade);
+                    }, 0);
+
+                    mensagemWhatsApp += "Preço Total: R$ " + precoTotal.toFixed(2) + "\n";
+
+                    try {
+                        // Envia a mensagem para a API
+                        await handleSendNotification(mensagemWhatsApp);
+                        console.log("Mensagem enviada com sucesso para a API.");
+                    } catch (error) {
+                        console.error("Erro ao enviar mensagem para a API:", error);
+                    }
+                }
+
+
+
+
+                function retirarEstoque() {
+                    // Recuperar os produtos do carrinho do localStorage
+                    let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+                    // Iterar sobre cada produto no carrinho
+                    carrinho.forEach(produto => {
+                        // Enviar uma solicitação ao backend para atualizar o estoque do produto
+                        fetch(`/venderProduto?id=${produto.id}&qtd=${produto.quantidade}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({})
+                        })
+                                .then(response => {
+                                    if (!response.ok) {
+                                        console.error('Erro ao vender produto:', produto.id);
+                                        // Tratar o erro de forma adequada (opcional)
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Erro ao vender produto:', produto.id, error);
+                                    // Tratar o erro de forma adequada (opcional)
+                                });
+                    });
+
+                    // Limpar o carrinho no localStorage após a finalização da compra
+                    localStorage.removeItem('carrinho');
+                    document.getElementById('mostrarTotal').textContent = 'Total R$ 0,00';
+                    // Atualizar a exibição do carrinho na página
+                    mostrarCarrinho();
+                }
+
+        </script>
+    </body>
+
+</html>

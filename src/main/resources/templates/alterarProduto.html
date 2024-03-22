@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Alterar Produto</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/index.css" /> 
+        <link rel="stylesheet" href="../css/restrito.css" /> 
+    </head>
+
+    <body>
+        <header>
+
+            <div class="cabecalho flex-container">                
+                <div class="cabecalho2 flex-container">
+                    <p>GRYSAL</p>
+                </div>
+                <img id="G" src="../imagens/G.png" alt="Simbolo Grysal"/>
+                <div class="cabecalho3 flex-container">
+                    <h1>Alterar Produto</h1>
+                </div>                
+            </div>
+
+            <button onclick="goBack()" class="botaoVoltar">Voltar</button>
+
+        </header>
+
+        <main>            
+
+            <form class="cadastrarCategoriaForm" method="POST" th:action="@{/alterarProdutoId}" th:object="${produto}" enctype="multipart/form-data">
+
+                <input type="hidden" id="produtoId" th:field="${produto.id}" />
+
+                <label>Produto:</label><input id="nomeCategoria"  type="text" th:field="${produto.nome}" ></input><br><br>
+
+                <label>Marca: </label><input id="marcaProduto" th:field="${produto.marca}" type="text" name="marca"><br><br>
+
+                <label>Quantidade: </label><input id="qtdProduto" th:field="${produto.quantidade}" type="text" name="quantidade"><br><br>
+
+                <label>Preço: </label><input id="precoProduto" th:field="${produto.preco}" type="text" name="preco"><br><br>
+
+                <label>Descrição: </label><textarea id="descProduto" th:field="${produto.descricao}" rows="4"></textarea><br><br>
+
+                <label>Foto:</label> <input id="fotoInput" type="file" onclick="clearFileName()" name="imagem">
+                <span id="fotoInput0" th:text="${produto.foto}"></span>
+                               
+                <label>Categoria: </label>
+                <select name="idCategoria" class="form-control">
+                    <option th:each="categ : ${listaTodasCategorias}" 
+                            th:value="${categ.id}" 
+                            th:text="${categ.nome}" 
+                            th:selected="${categ.id == produto.categoria.id}"></option>
+                </select>
+                <br><br>
+
+                <button id="botaoCategoria" class="botaoCadastrar" type="button" onclick="enviarFormulario()">Alterar</button>
+
+            </form>
+
+
+
+        </main>
+
+        <footer>
+
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+
+
+        <script>
+                    function goBack() {
+                        window.location.href = '/mostrarProdutosRestrito';
+                    }
+
+                    function clearFileName() {
+                        var fileNameDisplay = document.getElementById('fotoInput0');
+                        fileNameDisplay.innerText = '';
+                        var inputF = document.getElementById('fotoInput');
+                        inputF.style.color = 'initial';
+                    }
+
+                    $(document).ready(function () {
+                        // Aplica a máscara de dinheiro com ponto e duas casas decimais
+                        $('#preco').inputmask('currency', {
+                            radixPoint: '.', // Define o ponto como separador decimal
+                            groupSeparator: ',', // Define a vírgula como separador de milhares
+                            allowMinus: false, // Impede valores negativos
+                            prefix: '', // Não adiciona nenhum prefixo ao valor
+                            digits: 2, // Define duas casas decimais
+                            autoUnmask: true, // Remove a máscara antes de enviar o formulário
+                        });
+                        $('#preco').css('text-align', 'left');
+                    });
+
+
+
+
+                    function enviarFormulario() {
+                        const produtoId = document.getElementById("produtoId").value.trim();
+                        const nomeCategoria = document.getElementById("nomeCategoria").value.trim();
+                        const marcaProduto = document.getElementById("marcaProduto").value.trim();
+                        const qtdProduto = document.getElementById("qtdProduto").value.trim();
+                        const precoProduto = document.getElementById("precoProduto").value.trim();
+                        const descProduto = document.getElementById("descProduto").value.trim();
+                        const fotoInput = document.getElementById("fotoInput").files[0];
+                        const idCategoriaSelecionada = document.querySelector('select[name="idCategoria"]').value.trim();
+
+                        // Montar os dados do formulário em um objeto FormData
+                        const formData = new FormData();
+                        formData.append("id", produtoId);
+                        formData.append("nome", nomeCategoria);
+                        formData.append("marca", marcaProduto);
+                        formData.append("quantidade", qtdProduto);
+                        formData.append("preco", precoProduto);
+                        formData.append("descricao", descProduto);
+                        formData.append("categoria", idCategoriaSelecionada);
+                        formData.append("imagem", fotoInput);
+
+
+                        // Enviar a solicitação AJAX
+                        const xhr = new XMLHttpRequest();
+                        xhr.open("PUT", '/alterarProdutoId/' + produtoId);
+                        xhr.onload = function () {
+                            if (xhr.status === 200) {
+                                // A solicitação foi bem-sucedida
+                                console.log("Produto atualizado com sucesso!");
+                                window.location.href = "/mostrarProdutosRestrito";
+                            } else {
+                                // A solicitação falhou
+                                console.error("Falha ao atualizar o produto");
+                            }
+                        };
+                        xhr.send(formData);
+                    }
+        </script>
+
+    </body>
+
+</html>

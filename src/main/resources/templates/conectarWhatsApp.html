@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Restaurar Instância</title>
+    </head>
+    <body>
+        <h1>Restaurar Instância</h1>
+        <button onclick="restaurarInstancia()">Restaurar</button>
+
+        <div id="imagem-container"></div> <!-- Container para a imagem -->
+
+        <input type="hidden" id="userTokenId" th:value="${whats.usertokenid}">
+        <input type="hidden" id="instanceId" th:value="${whats.instanceid}">
+        <input type="hidden" id="instanceToken" th:value="${whats.instancetoken}">
+
+        <script src="https://cdn.jsdelivr.net/npm/jsqr@2.0.0/build/jsQR.min.js"></script>
+
+        <script>
+            function restaurarInstancia() {
+                    
+                    const USER_TOKEN_ID = document.getElementById("userTokenId").value;
+                    const INSTANCE_ID = document.getElementById("instanceId").value;
+                    const INSTANCE_TOKEN = document.getElementById("instanceToken").value;
+                    
+                    const endpoint = 'https://api.gzappy.com/v1/instances/restore';
+                    const requestData = {
+                    "instance_id": INSTANCE_ID,
+                            "instance_token": INSTANCE_TOKEN
+                    };
+                    fetch(endpoint, {
+                    method: "PATCH",
+                            headers: {
+                            "Content-Type": "application/json",
+                                    "user_token_id": USER_TOKEN_ID
+                            },
+                            body: JSON.stringify(requestData)
+                    })
+                    .then(response => {
+                    if (response.ok) {
+                    return response.json();
+                    } else {
+                    throw new Error('Falha na requisição de restauração de instância');
+                    }
+                    })
+                    .then(data => {
+                    console.log("Resposta do servidor:", data);
+                            // Verifica se a resposta contém a propriedade 'qr' e se contém algum valor
+                            if (data && data.qr) {
+                    // Cria um elemento de imagem
+                    const imgElement = document.createElement('img');
+                            // Define o atributo src com a imagem base64 da resposta
+                            imgElement.src = data.qr;
+                            // Adiciona o elemento de imagem ao contêiner na página
+                            document.getElementById('imagem-container').appendChild(imgElement);
+                    } else {
+                    console.error("A resposta do servidor não contém uma imagem válida.");
+                    }
+                    })
+                    .catch(error => {
+                    console.error("Ocorreu um erro durante a restauração da instância:", error);
+                    });
+            }
+        </script>
+    </body>
+</html>

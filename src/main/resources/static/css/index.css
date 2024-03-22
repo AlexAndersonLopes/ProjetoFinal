@@ -1,0 +1,464 @@
+
+/*CSS PARA CELULAR*/
+@media only screen and (max-width: 750px) {
+
+    body.light{
+        background-color: whitesmoke;
+        margin-bottom: 15%;
+    }
+
+    body{
+        background-color: whitesmoke;
+        margin-bottom: 15%;
+    }
+
+    .logo{
+        width: 100%;
+    }
+
+
+    #redesSociais{
+        display: block;
+        display: flex;
+        width: 60%;
+        justify-content: space-around;
+        margin: auto;
+    }
+
+    #redesSociais img{
+        width: 80%;
+        box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.6); /* Adiciona uma sombra */
+    }
+
+    #visiteRedesSociais{
+        display: flex;
+        justify-content: center;
+        margin-top: 10%;
+    }
+
+    #visiteRedesSociais p{
+        font-size: 90%;
+        color: black; /*cor da fonte para tema claro: PRETO*/
+    }
+
+    #primeiraLinha{
+        display: flex;
+        justify-content: space-between; /* Adiciona espaço entre os elementos */
+        align-items: center; /* Alinha os elementos verticalmente */
+        margin-right: 3%;
+        margin-top: 1%;
+    }
+
+
+    #divLogin,
+    #carrinhoCompras {
+        display: flex;
+        align-items: center;
+    }
+
+    #divLogin{
+        display: flex;
+        justify-content: center;
+        border: 1px solid black;
+        border-radius: 25px;
+        padding: 2px 3px;
+        margin-left: 3%;
+        background: radial-gradient(circle, #D2CEFF 50%, #9083C4);
+    }
+
+    #carrinhoCompras {
+        position: relative;
+    }
+
+    #carrinhoCompras a {
+        display: flex;
+        align-items: center;
+    }
+
+    #carrinhoCompras span {
+        color: black;
+        font-size: 90%;
+    }
+
+    #carrinhoCompras img {
+        width: 25%;
+    }
+
+    #divLogin img {
+        width: 30%;
+    }
+
+    #divLogin span {
+        font-size: 90%;
+        font-weight: 600;
+        color: blue;
+        margin-left: 3px;
+    }
+
+    #quantidadeCarrinho {
+        background-color: red;
+        color: white;
+        border-radius: 50%;
+        padding: 5px 10px;
+        font-size: 12px;
+        font-weight: 700;
+        position: absolute;
+        top: -5px;
+        right: -8px;
+    }
+
+    .pCategoria p{
+        font-size: 140%;
+        font-weight: 700;
+        text-align: center;
+        font-family: Arial;
+        margin-top: 15%;
+        text-shadow: 6px 6px 10px rgba(0, 0, 0, 0.8); /*sombra no texto*/
+    }
+
+    .categoriaTodo{
+        border: 2px solid black; /*Borda Preta para tema claro*/
+        margin: auto;
+        background-color: white;
+        margin-top: 2%;
+        margin-left: 10%;
+        margin-right: 10%;
+        box-shadow: 10px 15px 15px rgba(0, 0, 0, 0.6); /* Adiciona uma sombra */
+    }
+
+    .listaCategorias{
+        display: flex;
+        margin: auto;
+        /*border: 0.5px solid gainsboro;*/
+        justify-content: flex-start;
+        height: 60px;
+        align-items: center;
+    }
+
+    .listaCategorias label{
+        color: black; /*cor da fonte para tema claro: PRETO*/
+        text-align: center;
+        font-size: 100%;
+        font-weight: 600;
+        align-items: center;
+        margin: auto;
+    }
+
+    .listaCategorias img{
+        max-height: 55px;
+    }
+
+    /*teste de cadastrar categoria*/
+    .botaoCadastrarCategoria{
+        margin-top: 5%;
+    }
+
+    #quantidadeCarrinho {
+        background-color: red; /* Cor de fundo */
+        color: white; /* Cor do texto */
+        border-radius: 50%; /* Forma redonda */
+        padding: 5px 10px; /* Espaçamento interno */
+        font-size: 12px; /* Tamanho da fonte */
+        font-weight: 700;
+        position: absolute; /* Posicionamento absoluto */
+        top: -1px; /* Posicionamento em relação ao topo do contêiner pai */
+        right: -2px;
+    }
+
+    .cabecalho{
+        display: flex;
+        background-color: mediumorchid;
+        width: 100%;
+        min-height: 100px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        border: 3px solid darkmagenta;
+        background-image: linear-gradient(to right, darkmagenta 20%, mediumorchid 40%),
+            linear-gradient(to left, darkmagenta 20%, mediumorchid 40%);
+        background-size: 50% 100%, 100% 100%; /* 50% da largura para cada gradiente */
+        background-repeat: no-repeat; /* Evita a repetição do gradiente */
+    }
+
+    #G{
+        width: 30%;
+        margin-left: auto;
+        margin-right: 15%;
+        margin-top: -5%;
+    }
+
+
+
+    .cabecalho2{
+        display: flex;
+        width: 50%;
+        height: 7%;
+        margin-top: 5%;
+        background: linear-gradient(to right, black 70%, mediumorchid 99%); /* gradiente linear de preto para mediumorchid da esquerda para a direita */
+        box-shadow: -15px 15px 20px rgba(0, 0, 0, 0.6); /* Adiciona uma sombra */
+    }
+
+    .cabecalho2 p{
+        font-size: 125%;
+        font-weight: 700;
+        font-family: Comic Sans, cursive;
+        color: white;
+        margin: auto;
+        text-shadow: 2px 4px 6px rgba(255, 255, 255, 0.6); /*sombra no texto*/
+    }
+
+    .cabecalho3 {
+        display: flex;
+        width: 100%;
+        padding-top: 1%;
+        padding-bottom: 1%;
+        margin-top: -2%;
+        margin-bottom: 5%;
+        justify-content: flex-end;
+        margin-left: auto;
+        background: linear-gradient(to left, white 60%, darkmagenta 99%); /* gradiente linear de preto para mediumorchid da esquerda para a direita */
+        box-shadow: 15px 5px 8px rgba(0, 0, 0, 0.6); /* Adiciona uma sombra */
+    }
+
+    .cabecalho3 h1 {
+        font-size: 100%;
+        font-weight: 500;
+        font-family: Arial;
+        margin: auto;
+        justify-content: center;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /*sombra no texto*/
+    }
+
+    #icoZap, #icoInstag{
+        border-radius: 25px;
+    }
+
+
+
+    /*______________________________*/
+}
+
+
+@media only screen and (min-width: 751px) {
+
+    body{
+        background-color: whitesmoke;
+        margin-bottom: 15%;
+    }
+
+    .cabecalho{
+        display: flex;
+        background-color: mediumorchid;
+        width: 100%;
+        min-height: 100px;
+        max-height: 170px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        border: 3px solid darkmagenta;
+        background-image: linear-gradient(to right, darkmagenta 20%, mediumorchid 40%),
+            linear-gradient(to left, darkmagenta 20%, mediumorchid 40%);
+        background-size: 50% 100%, 100% 100%; /* 50% da largura para cada gradiente */
+        background-repeat: no-repeat; /* Evita a repetição do gradiente */
+    }
+
+    #G{
+        width: 10%;
+        height: 10%;
+        margin-left: auto;
+        margin-right: 15%;
+        margin-top: -2%;
+    }
+
+    .cabecalho2{
+        display: flex;
+        width: 40%;
+        height: 7%;
+        margin-top: 1%;
+        background: linear-gradient(to right, black 70%, mediumorchid 95%); /* gradiente linear de preto para mediumorchid da esquerda para a direita */
+        box-shadow: -15px 25px 20px rgba(0, 0, 0, 0.6); /* Adiciona uma sombra */
+    }
+
+    .cabecalho2 p{
+        font-size: 140%;
+        font-weight: 700;
+        font-family: Comic Sans, cursive;
+        color: white;
+        margin: auto;
+        text-shadow: 2px 4px 6px rgba(255, 255, 255, 0.6); /*sombra no texto*/
+    }
+
+    .cabecalho3 {
+        display: flex;
+        width: 60%;
+        padding-top: 0.5%;
+        padding-bottom: 0.5%;
+        margin-top: -2%;
+        margin-bottom: 1%;
+        border-radius: 25px 0px 0px 25px;
+        justify-content: flex-end;
+        margin-left: auto;
+        box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.4); /* Adiciona uma sombra */
+        background: linear-gradient(to left, white 60%, mediumorchid 90%); /* gradiente linear de preto para mediumorchid da esquerda para a direita */
+        box-shadow: 15px 5px 8px rgba(0, 0, 0, 0.6); /* Adiciona uma sombra */
+    }
+
+    .cabecalho3 h1 {
+        font-size: 90%;
+        font-weight: 500;
+        font-family: Arial;
+        margin: auto;
+        justify-content: center;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /*sombra no texto*/
+    }
+
+
+    #primeiraLinha{
+        display: flex;
+        justify-content: space-between; /* Adiciona espaço entre os elementos */
+        align-items: center; /* Alinha os elementos verticalmente */
+        margin-right: 3%;
+        margin-top: 1%;
+    }
+
+
+    #divLogin,
+    #carrinhoCompras {
+        display: flex;
+        align-items: center;
+    }
+
+    #divLogin{
+        display: flex;
+        justify-content: center;
+        margin-top: -1%;
+        border: 1px solid black;
+        border-radius: 25px;
+        padding: 2px 3px;
+        margin-left: 15%;
+        background: radial-gradient(circle, #D2CEFF 50%, #9083C4);
+    }
+
+    #carrinhoCompras {
+        position: relative;
+    }
+
+    #carrinhoCompras a {
+        display: flex;
+        align-items: center;
+    }
+
+    #carrinhoCompras span {
+        color: black;
+        font-size: 90%;
+    }
+
+    #carrinhoCompras img {
+        width: 25%;
+    }
+
+    #divLogin img {
+        width: 30%;
+    }
+
+    #divLogin span {
+        font-size: 90%;
+        font-weight: 600;
+        color: blue;
+        margin-left: 3px;
+    }
+
+    #quantidadeCarrinho {
+        background-color: red;
+        color: white;
+        border-radius: 50%;
+        padding: 5px 10px;
+        font-size: 12px;
+        font-weight: 700;
+        position: absolute;
+        top: -5px;
+        right: -8px;
+    }
+
+
+
+    .pCategoria p{
+        font-size: 140%;
+        font-weight: 700;
+        text-align: center;
+        font-family: Arial;
+        margin-top: 3%;
+        text-shadow: 6px 6px 10px rgba(0, 0, 0, 0.8); /*sombra no texto*/
+    }
+
+    .categoriaTodo{
+        display: block;
+        border: 2px solid black; /*Borda Preta para tema claro*/
+        margin: auto;
+        background-color: white;
+        margin-top: 2%;
+        width: 35%;
+        flex-wrap: wrap;
+        box-shadow: 10px 15px 15px rgba(0, 0, 0, 0.6); /* Adiciona uma sombra */
+    }
+
+    .listaCategorias{
+        display: flex;
+        width: 100%;
+        margin: auto;
+        justify-content: flex-start;
+        height: 60px;
+        align-items: center;
+    }
+
+    .listaCategorias label{
+        color: black; /*cor da fonte para tema claro: PRETO*/
+        text-align: center;
+        font-size: 100%;
+        font-weight: 600;
+        align-items: center;
+        margin: auto;
+        cursor: pointer;
+    }
+
+    .listaCategorias img{
+        max-height: 55px;
+    }
+
+
+    #redesSociais{
+        display: flex;
+        width: 60%;
+        justify-content: space-around;
+        margin: auto;
+    }
+
+    #redesSociais img{
+        width: 80%;
+        box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.6); /* Adiciona uma sombra */
+        transition: transform 1s;
+    }
+
+    #redesSociais img:hover {
+        transform: scale(1.3);
+    }
+
+    #visiteRedesSociais{
+        display: flex;
+        justify-content: center;
+        margin-top: 5%;
+    }
+
+    #visiteRedesSociais p{
+        font-size: 90%;
+        color: black; /*cor da fonte para tema claro: PRETO*/
+    }
+
+    /*teste de cadastrar categoria*/
+    .botaoCadastrarCategoria{
+        margin-top: 5%;
+    }
+
+    #icoZap, #icoInstag{
+        border-radius: 25px;
+    }
+
+}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Alterar Categoria</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/index.css" /> 
+        <link rel="stylesheet" href="../css/restrito.css" /> 
+    </head>
+
+    <body>
+        <header>
+
+            <div class="cabecalho flex-container">                
+                <div class="cabecalho2 flex-container">
+                    <p>GRYSAL</p>
+                </div>
+                <img id="G" src="../imagens/G.png" alt="Simbolo Grysal"/>
+                <div class="cabecalho3 flex-container">
+                    <h1>Alterar Categoria</h1>
+                </div>                
+            </div>
+
+            <button onclick="goBack()" class="botaoVoltar">Voltar</button>
+
+        </header>
+
+        <main>
+
+            <form class="cadastrarCategoriaForm" method="POST" th:action="@{/alterarCategoriaId}" th:object="${categoria}" enctype="multipart/form-data">
+
+                <input type="hidden" id="categoriaId" th:field="${categoria.id}" />
+
+                <label>Categoria:</label><input id="nomeCategoria"  type="text" th:field="${categoria.nome}" ></input><br><br>
+
+                <label>Foto:</label> <input id="fotoInput" type="file" onclick="clearFileName()" name="imagem">
+                <span id="mostrarNomeFoto" th:text="${categoria.foto}"></span><br><br>
+
+                <button id="botaoCategoria" class="botaoCadastrar" type="button" onclick="enviarFormulario()" >Alterar</button>
+
+            </form>
+
+        </main>
+
+        <footer>
+
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+        <script>
+                    function goBack() {
+                        window.location.href = '/mostrarTodasCategorias';
+                    }
+
+                    function clearFileName() {
+                        var fileNameDisplay = document.getElementById('mostrarNomeFoto');
+                        fileNameDisplay.innerText = '';
+                        var inputF = document.getElementById('fotoInput');
+                        inputF.style.color = 'initial';
+                    }
+                    
+                    // Função para enviar o formulário para o controller
+                    function enviarFormulario() {
+                        const categoriaId = document.getElementById("categoriaId").value.trim();
+                        const nomeCategoria = document.getElementById("nomeCategoria").value.trim();
+                        const fotoInput = document.getElementById("fotoInput").files[0];
+                        // Criar um objeto FormData para enviar os dados do formulário
+                        const formData = new FormData();
+                        formData.append("id", categoriaId);
+                        formData.append("nome", nomeCategoria);
+                        formData.append("imagem", fotoInput);
+                        // Enviar a solicitação AJAX
+                        const xhr = new XMLHttpRequest();
+                        xhr.open("PUT", '/alterarCategoriaId/' + categoriaId);
+                        xhr.onload = function () {
+                            if (xhr.status === 200) {
+                                // A solicitação foi bem-sucedida
+                                console.log("Categoria atualizada com sucesso!");
+                                window.location.href = "/mostrarTodasCategorias";
+                            } else {
+                                // A solicitação falhou
+                                console.error("Falha ao atualizar a categoria");
+                            }
+                        };
+                        xhr.send(formData);
+                    }
+
+
+
+
+                    /*
+                     // Enviar a requisição usando fetch
+                     fetch(`/alterarCategoriaId/${categoriaId}`, {
+                     method: 'PUT',
+                     body: formData
+                     })
+                     .then(response => {
+                     if (!response.ok) {
+                     throw new Error('Erro ao alterar categoria');
+                     }
+                     return response.json();
+                     })
+                     .then(data => {
+                     window.location.href = "/mostrarTodasCategorias";
+                     })
+                     .catch(error => {
+                     console.error('Erro ao alterar categoria:', error);
+                     });
+                     }
+                     */
+
+                    /*
+                     const formulario = document.querySelector('.cadastrarCategoriaForm');
+                     
+                     // Adicionando um listener de evento para o evento submit do formulário
+                     formulario.addEventListener('submit', function (event) {
+                     event.preventDefault(); // Prevenir o comportamento padrão de submissão do formulário
+                     
+                     // Chamar a função enviarFormulario() para enviar o formulário
+                     enviarFormulario();
+                     });
+                     */
+        </script>
+
+    </body>
+
+</html>

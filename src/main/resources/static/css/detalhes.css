@@ -1,0 +1,372 @@
+
+body{
+    margin-bottom: 15%;
+}
+
+.botaoVoltar{
+    margin-top: 5%;
+    padding: 1% 6%;
+    border: 1px solid black;
+    border-radius: 25px;
+    color: blue;
+    font-size: 100%;
+    font-weight: 700;
+    background-color: buttonface;
+    margin-left: 5%;
+}
+
+#detalhesFoto{
+    display: flex;
+    width: 50%;
+    margin: auto;
+    margin-bottom: 10%;
+    border: 2px solid black;
+}
+
+#divDetalhes{
+    margin-top: 10%;
+    margin-bottom: 15%;
+    text-align: center;
+}
+
+#nomeMarca{
+    display: flex;
+    justify-content: center;
+    font-size: 125%;
+    font-weight: 700;
+    font-family: Arial;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+#qtd{
+    margin-top: 5%;
+    font-size: 80%;
+    font-weight: 500;
+    font-family: Arial;
+    text-align: center;
+}
+
+#valor{
+    margin: auto;
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 2% 10%;
+    display: table;
+    background-color: yellow;
+    font-family: Arial;
+    text-align: center;
+    margin-top: 5%;
+    color: red;
+    font-size: 130%;
+    font-weight: 700;
+}
+
+#desc{
+    font-size: 100%;
+    font-family: Arial;
+    margin-left: 3%;
+    margin-right: 3%;
+    text-align: center;
+    display: inline-block;
+
+}
+
+#accordionExample{
+    margin: auto;
+    width: 80%;
+    border: 1px solid black;
+}
+
+#headingOne {
+    background-color: azure;
+}
+
+#headingOne button{
+    text-decoration: none;
+    font-family: Arial;
+    font-size: 115%;
+    font-weight: 700;
+    color: black;
+}
+
+.form-control {
+    max-width: 50px;
+
+}
+
+.input-group, .btn {
+    min-width: 20px;
+    /*margin: auto;*/
+}
+
+#containerLabel{
+    margin: auto;
+    text-align: center;
+}
+
+
+.container {
+    display: flex;
+    /*margin: 0 auto;*/
+    margin-top: 5%;
+    margin-bottom: 5%;
+
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#containerLabel{
+    font-size: 90%;
+    margin: auto;
+    margin-right: 3%;
+}
+
+#pc{
+    display: block;
+    margin-left: 0px;
+    width: 100%;
+    margin-right: 0%;
+}
+
+.addCarrinho{
+    padding: 1% 6%;
+    border: 2px solid black;
+    border-radius: 25px;
+    font-size: 125%;
+    font-weight: 700;
+    background: radial-gradient(circle, #9EF6FF 60%, #3224FF);
+    box-shadow: 6px 6px 8px rgba(0, 0, 0, 0.8);
+}
+
+
+/* Define a animação */
+@keyframes aumentarDiminuir {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.4);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+#imagemCarrinho {
+    width: 25%;
+    transition: transform 5s;
+}
+
+/* Aplica a animação apenas quando a classe 'animar' é adicionada */
+#imagemCarrinho.animar {
+    animation: aumentarDiminuir 7s;
+}
+
+
+
+
+@media only screen and (min-width: 751px) {
+
+
+    body{
+        margin-bottom: 10%;
+    }
+
+    #pc{
+        display: block;
+        margin-left: 0px;
+        width: 49%;
+        margin-right: 10%;
+    }
+
+    .addCarrinho{
+        padding: 1% 6%;
+        border: 2px solid black;
+        border-radius: 25px;
+        font-size: 125%;
+        font-weight: 700;
+        background: radial-gradient(circle, #9EF6FF 60%, #3224FF);
+        box-shadow: 6px 6px 8px rgba(0, 0, 0, 0.8);
+    }
+
+    #detalhesFoto{
+        display: flex;
+        width: 30%;
+        margin: auto;
+        border: 2px solid black;
+        margin-left: 10%;
+        align-items: center;
+    }
+
+    #divDetalhes{
+        display: flex;
+        margin-top: 5%;
+        text-align: center;
+    }
+
+    #nomeMarca{
+        display: flex;
+        justify-content: center;
+        font-size: 140%;
+        font-weight: 700;
+        font-family: Arial;
+        margin-right: 5%;
+        margin-left: 5%;
+        text-align: center;
+    }
+
+    #qtd{
+        margin-top: 5%;
+        font-size: 90%;
+        font-weight: 500;
+        font-family: Arial;
+        text-align: center;
+    }
+
+    #valor{
+        margin: auto;
+        border: 1px solid black;
+        border-radius: 50%;
+        padding: 2% 10%;
+        display: table;
+        background-color: yellow;
+        font-family: Arial;
+        text-align: center;
+        margin-top: 5%;
+        color: red;
+        font-size: 140%;
+        font-weight: 900;
+    }
+
+    #desc{
+        font-size: 100%;
+        font-family: Arial;
+        margin-left: 3%;
+        margin-right: 3%;
+        text-align: center;
+    }
+
+    #accordionExample{
+        margin: auto;
+        width: 80%;
+        border: 1px solid black;
+    }
+
+    #headingOne {
+        background-color: #D7D7D7;
+    }
+
+    #headingOne button{
+        text-decoration: none;
+        font-family: Arial;
+        font-size: 115%;
+        font-weight: 700;
+        color: black;
+    }
+
+    .form-control {
+        max-width: 50px;
+
+    }
+
+    .input-group, .btn {
+        min-width: 20px;
+    }
+
+    #containerLabel{
+        margin: auto;
+        text-align: center;
+    }
+
+
+    .container {
+        display: flex;
+        margin-top: 5%;
+        margin-bottom: 5%;
+        min-width: 45%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #containerLabel{
+        font-size: 90%;
+        margin: auto;
+        margin-right: 3%;
+    }
+
+
+    /* Define a animação */
+    @keyframes aumentarDiminuir {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.4);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    #imagemCarrinho {
+        width: 25%;
+        transition: transform 5s;
+    }
+
+    /* Aplica a animação apenas quando a classe 'animar' é adicionada */
+    #imagemCarrinho.animar {
+        animation: aumentarDiminuir 7s;
+    }
+    
+    .card h5{
+        font-size: 140%;
+        text-align: center;
+    }
+    
+    #accordionExample{
+        margin-top: -10%;
+    }
+
+    .botaoVoltar{
+    margin-top: 2%;
+    padding: 1% 6%;
+    border: 1px solid black;
+    border-radius: 25px;
+    color: blue;
+    font-size: 100%;
+    font-weight: 700;
+    background-color: buttonface;
+    margin-left: 10%;
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
